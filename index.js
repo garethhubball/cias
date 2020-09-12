@@ -238,8 +238,14 @@ module.exports = {
         });
         db.end();
     },
-    starting: function (client, db, ciasOPTS) {
-        let sql = `SELECT name FROM ${ciasOPTS.database}`;
+    starting: function (client, ciasOPTS) {
+        const db = mysql.createConnection({
+            host: ciasOPTS.MYSQLhost,
+            user: ciasOPTS.MYSQLuser,
+            password: ciasOPTS.MYSQLpassword,
+            database: ciasOPTS.MYSQLdatabase
+        });
+        let sql = `SELECT name FROM ${ciasOPTS.MYSQLtable}`;
         let response = db.query(sql, (err, result) => {
             if (err) throw err;
             Object.keys(result).forEach(function (id) {
