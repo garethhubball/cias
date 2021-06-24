@@ -6,7 +6,7 @@ import polyphony from 'polyphony.js';
 export default CiaS;
 class CiaS {
 
-    announce(client, msg, context, channel, ciasOPTS) {
+    announce(client, msg, context, channel, ciasOPTS: ciasOPTS) {
         if (context.mod || (context["user-id"] === context["room-id"])) {
             const db = createConnection({
                 host: ciasOPTS.MYSQLhost,
@@ -29,7 +29,7 @@ class CiaS {
         }
     }
 
-    async OBS_RefreshParticipants(participant, ciasOPTS) {
+    async OBS_RefreshParticipants(participant, ciasOPTS: ciasOPTS) {
         const obs = new OBSWebSocket();
         let source = `Participant ${participant} Screen`;
         let source2 = `Participant Name ${participant}`;
@@ -79,7 +79,7 @@ class CiaS {
             });
     }
 
-    addParticipant(number, name, channel, client, ciasOPTS) {
+    addParticipant(number, name, channel, client, ciasOPTS: ciasOPTS) {
         const db = createConnection({
             host: ciasOPTS.MYSQLhost,
             user: ciasOPTS.MYSQLuser,
@@ -102,7 +102,7 @@ class CiaS {
         db.end();
     }
 
-    refreshParticipantNames(participant, ciasOPTS) {
+    refreshParticipantNames(participant, ciasOPTS: ciasOPTS) {
         let source = `Participant Name ${participant}`;
         obs.connect({
             address: ciasOPTS.OBSaddress,
@@ -128,7 +128,7 @@ class CiaS {
             });
     }
 
-    updateURL(number, name, ciasOPTS) {
+    updateURL(number, name, ciasOPTS: ciasOPTS) {
         console.log(`OBS Prepping for updateURL`);
         const obs = new OBSWebSocket();
         obs.connect({
@@ -149,7 +149,7 @@ class CiaS {
             });
     }
 
-    participants(client, params, context, channel, ciasOPTS) {
+    participants(client, params, context, channel, ciasOPTS: ciasOPTS) {
         const db = createConnection({
             host: ciasOPTS.MYSQLhost,
             user: ciasOPTS.MYSQLuser,
@@ -204,7 +204,7 @@ class CiaS {
         db.end();
     }
 
-    tenseconds(client, ciasOPTS) {
+    tenseconds(client, ciasOPTS: ciasOPTS) {
         const db = createConnection({
             host: ciasOPTS.MYSQLhost,
             user: ciasOPTS.MYSQLuser,
@@ -253,7 +253,7 @@ class CiaS {
         db.end();
     }
 
-    starting(client, ciasOPTS) {
+    starting(client, ciasOPTS: ciasOPTS) {
         const db = createConnection({
             host: ciasOPTS.MYSQLhost,
             user: ciasOPTS.MYSQLuser,
@@ -303,7 +303,7 @@ class CiaS {
         db.end();
     }
 
-    refreshParticipants(params, ciasOPTS) {
+    refreshParticipants(params, ciasOPTS: ciasOPTS) {
         if (params[0] === `all`) {
             this.OBS_RefreshParticipants(1, ciasOPTS);
             this.OBS_RefreshParticipants(2, ciasOPTS);
