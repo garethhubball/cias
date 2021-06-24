@@ -3,6 +3,7 @@ import OBSWebSocket from 'obs-websocket-js';
 const obs = new OBSWebSocket();
 import { createConnection } from `mysql`;
 import polyphony from 'polyphony.js';
+import { ciasOPTS } from './ciasopts';
 export default CiaS;
 class CiaS {
 
